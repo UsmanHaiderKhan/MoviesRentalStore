@@ -15,10 +15,10 @@ namespace MoviesRentalStore.Controllers
         {
             var movies = new Movie()
             {
-                Name = "Dome 4",
+                Name = "Dome4",
 
             };
-            return View();
+            return View(movies);
         }
     }
 }
