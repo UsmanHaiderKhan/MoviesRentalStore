@@ -1,4 +1,5 @@
 ﻿using MoviesRentalStore.Models;
+using System;
 using System.Web.Mvc;
 
 namespace MoviesRentalStore.Controllers
@@ -18,7 +19,25 @@ namespace MoviesRentalStore.Controllers
                 Name = "Dome4",
 
             };
-            return View(movies);
+            return RedirectToAction("index", "Home", new { Page = 1, sortby = "name" });
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return Content("ID=" + id);
+        }
+
+        public ActionResult Index(int? pageindex, string sortBy)
+        {
+            if (!pageindex.HasValue)
+
+
+                pageindex = 1;
+            if (String.IsNullOrWhiteSpace(sortBy))
+
+                sortBy = "Name";
+            return Content(String.Format("pageindex={0}&sortby{1}", pageindex, sortBy));
+
         }
     }
 }
