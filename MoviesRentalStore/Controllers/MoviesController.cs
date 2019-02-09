@@ -1,5 +1,6 @@
 ﻿using MoviesRentalStore.Models;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace MoviesRentalStore.Controllers
@@ -7,9 +8,11 @@ namespace MoviesRentalStore.Controllers
     public class MoviesController : Controller
     {
         // GET: Movies
-        public ActionResult Index()
+
+        [Route("Movies/RelaseByDate/{year}/{month:regex(\\d{2}):range(1,12)}")]
+        public ActionResult RelaseByDate(int year, int month)
         {
-            return View();
+            return Content($"Year:{year} && Month{month}");
         }
 
         public ActionResult Random()
@@ -19,7 +22,18 @@ namespace MoviesRentalStore.Controllers
                 Name = "Dome4",
 
             };
-            return RedirectToAction("index", "Home", new { Page = 1, sortby = "name" });
+            var customer = new List<Customer>
+            {
+                new Customer {Name = "Usman Haider Khan", Id = 1},
+                new Customer {Name = "Salman Khan", Id = 2}
+            };
+            var viewModel = new RandomMovieViewModel()
+            {
+                Customer = customer,
+                Movie = movies
+            };
+            return View(viewModel);
+            //return RedirectToAction("index", "Home", new { Page = 1, sortby = "name" });
         }
 
         public ActionResult Edit(int id)
