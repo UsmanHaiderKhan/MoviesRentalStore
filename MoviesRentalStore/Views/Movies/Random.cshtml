@@ -1,6 +1,26 @@
 ﻿@using MoviesRentalStore.Models
-@model Movie
+@model RandomMovieViewModel
 @{
     ViewBag.Title = "Random";
+    var pop = Model.Customer.Count > 0 ? "populer" : null;
 }
-<h2>@Model.Name</h2>
+<h2 class="@pop">@Model.Movie.Name</h2>
+@if (Model.Customer.Count == 0)
+{
+    <text>No One Is Here</text>
+
+}
+else
+{
+    <ul>
+        @foreach (var v in Model.Customer)
+        {
+            <li>
+                <h2>@v.Name</h2>
+                <h2>@v.Id</h2>
+            </li>
+
+
+        }
+    </ul>
+}
