@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Index</h2>
+<table class="table table-responsive table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a href="@Url.Action("CustomerDetails","Customers")">Usman Haider Khan</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="#">Arslan Ameer</a>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
